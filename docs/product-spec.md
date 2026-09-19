@@ -1,12 +1,14 @@
 # Find That Thing
 
-Product and technical specification · 18 September 2026
+Product and technical specification
 
 Status: proposed design for a new browser extension. This document describes intended behavior, not implemented or measured capabilities. All limits, quality thresholds, and performance budgets below are initial targets to validate.
 
 ## 1. The product in one sentence
 
 **Find a page you saw before by describing what you remember about it.**
+
+Product direction clarified : **Jev is the core matching engine.** Local retrieval narrows the collection to plausible candidates, then Jev evaluates which pages fit the remembered description. The bounded workload targets speed and efficiency. Local-only search provides a fallback when Jev is unavailable or deliberately disabled; measured latency, cost, and recovery quality must substantiate the intended benefit.
 
 You remember the idea, but not the website or title:
 
@@ -123,7 +125,7 @@ This is the first version suitable for a broader pilot. Manual saving alone leav
 1. Show the promise: **“Remember the idea. Find the page.”**
 2. Explain that the collection lives in this browser profile.
 3. Explain separately that Jev-assisted search sends the query and selected page excerpts to TypeSafe.
-4. Offer local search immediately; let the user add a Jev key to enable assisted ranking.
+4. Guide the user through adding a Jev key and explicitly enabling Jev search as the intended experience. Keep local search available before setup and as a fallback.
 5. Invite the user to save one real page and try a description of it.
 
 Do not request browsing-history access or broad website access during the initial setup.
@@ -309,7 +311,7 @@ One limitation remains even with good ranking: the page may no longer say what i
 
 ## 8. Jev contract
 
-The documented integration uses state plus typed questions. The initial adapter can follow Goal Lock's existing HTTP approach, with a configurable model alias and explicit response validation. Verify the endpoint contract against the enabled account during implementation. [TypeSafe quick start](https://docs.typesafe.ai/introduction/quickstart)
+The documented integration uses state plus typed questions. Use an HTTP adapter with a configurable model alias and explicit response validation. Verify the endpoint contract against the enabled account during implementation. [TypeSafe quick start](https://docs.typesafe.ai/introduction/quickstart)
 
 Illustrative application state:
 
@@ -396,7 +398,7 @@ find-that-thing/
   tests/
 ```
 
-Prefer plain JavaScript modules initially, matching Goal Lock's small extension structure. A framework is optional and should follow interface needs rather than drive them.
+Prefer plain JavaScript modules initially to keep the extension structure small. A framework is optional and should follow interface needs rather than drive them.
 
 ### Permissions by stage
 
@@ -536,7 +538,7 @@ Have people write queries from memory after a delay, rather than deriving all qu
 3. Local lexical plus semantic retrieval.
 4. The same retrieval with Jev ranking.
 
-Jev earns its place if it improves recovery enough to justify added cost and latency. If it does not, keep the useful local search product and revisit the ranking approach.
+Use the local baselines to measure Jev's contribution to recovery quality, latency, and cost. If the Jev workflow misses these targets, improve candidate retrieval and ranking before claiming the intended speed and efficiency benefits. Local fallback alone does not establish that the Jev-powered product goal has been met.
 
 ### Metrics
 
@@ -554,7 +556,7 @@ Jev earns its place if it improves recovery enough to justify added cost and lat
 
 - Target candidate recall at 30 of at least 90% for captured-text queries.
 - Target correct-page presence in the top five of at least 80% on held-out queries.
-- Prefer at least a ten-percentage-point top-five improvement over full-text search on paraphrased queries before making Jev ranking the default.
+- Target at least a ten-percentage-point top-five improvement over full-text search on paraphrased queries to demonstrate Jev's ranking benefit.
 - Target false strong-match rate below 10% on absent-page queries.
 - Validate latency on a stated device and collection size, including cold indexing and provider failures.
 
@@ -633,31 +635,7 @@ Package onboarding, export/delete, diagnostics, and accurate data-flow disclosur
 
 **Exit:** users repeatedly recover real pages and the product's main failure modes are understood.
 
-## 16. Relationship to Goal Lock
-
-Goal Lock provides useful starting patterns: a small Manifest V3 extension, a side panel, a service-worker-owned Jev request, local key settings, and typed decisions.
-
-Reuse concepts selectively:
-
-- Side-panel layout and compact status handling.
-- Options page and key validation flow.
-- The general Jev request wrapper.
-- Lightweight JavaScript module organization.
-
-Build new foundations for:
-
-- Durable page storage and chunk indexing.
-- Search candidate retrieval.
-- Source-backed result excerpts.
-- Strict response schemas for this task.
-- Capture permission controls and deletion propagation.
-- Local embeddings and resumable indexing.
-
-Goal Lock's first-N-characters extraction is useful for a small current-page judgment, but can miss the detail someone later remembers. Its permissive answer parsing also should not become the validation contract here.
-
-Keep this as a separate extension initially. Goal Lock asks whether the current page helps a goal; Find That Thing recovers a previous page from a partial memory. Each should retain a simple primary action.
-
-## 17. Product decisions to revisit after evidence
+## 16. Product decisions to revisit after evidence
 
 | Decision | Initial position | What could change it |
 | --- | --- | --- |
@@ -671,7 +649,7 @@ Keep this as a separate extension initially. Goal Lock asks whether the current 
 
 Avoid claiming unique market positioning without competitor research. The product hypothesis is specific: **a short description plus recognizable source excerpts makes recovering a previously encountered page easier than the user's current method.**
 
-## 18. First concrete milestone
+## 17. First concrete milestone
 
 Build a version where someone can save 20 real pages, return the next day, type five descriptions from memory, and recover the intended page from the first five results.
 

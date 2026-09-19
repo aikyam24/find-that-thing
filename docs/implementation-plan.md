@@ -11,6 +11,7 @@ The user approved starting from `product-spec.md`. Build the manual-save prototy
 
 ## 2. Jev ranking
 
+- Make Jev the main matching engine: local retrieval supplies a bounded shortlist, and Jev evaluates and ranks it against the remembered description. Local results provide immediate feedback and a fallback.
 - Send only the query, title, opaque ID and at most two passages per candidate.
 - Validate score bounds, choices, and returned passage IDs. Use a 30-page cap, three requests in flight, and an eight-second deadline covering response parsing.
 - Return local results on failure. Cancel superseded searches and prevent deleted or changed records from resurfacing.
@@ -20,7 +21,7 @@ The user approved starting from `product-spec.md`. Build the manual-save prototy
 
 - Toolbar activation grants activeTab, saves the page, and opens the search panel. A separate command opens search without saving.
 - Build a white/forest-green panel with one search field, original excerpts, and Open / This is the one / Forget actions.
-- Provide settings for optional Jev use, explicit disclosure, collection export, key removal, and clearing saved content.
+- Provide Jev key setup and explicit enablement with a data-sharing disclosure, plus collection export, key removal, and clearing saved content. Keep local-only search as a fallback or a deliberate user choice.
 - Use trusted-context messaging and storage; no content script receives a key.
 
 ## 4. Focused verification and handoff

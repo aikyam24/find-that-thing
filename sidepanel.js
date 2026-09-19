@@ -30,7 +30,7 @@ function render() {
   for (const result of results.slice(0, visible)) {
     const card = element('article', 'result');
     const meta = element('div', 'result-meta');
-    meta.append(element('span', 'domain', result.hostname), element('span', 'date', new Date(result.capturedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })));
+    meta.append(element('span', 'domain', result.hostname), element('span', 'date', new Date(result.displayedAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })));
     card.append(meta, element('h3', '', result.title));
     const excerpt = element('blockquote', 'excerpt');
     excerpt.textContent = `“${excerptFor(result.excerpt, activeQuery)}”`;
