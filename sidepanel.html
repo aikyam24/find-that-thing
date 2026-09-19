@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find That Thing</title><link rel="stylesheet" href="ui.css">
+</head>
+<body class="panel">
+  <header class="app-header">
+    <a class="brand" href="sidepanel.html" aria-label="Find That Thing home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 21 5 28V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2v8"/><circle cx="22" cy="21" r="7"/><path d="m27 26 4 4"/></svg><span>Find That Thing</span></a>
+    <button id="settings" class="text-button muted">Settings</button>
+  </header>
+  <main>
+    <section class="search-area" aria-labelledby="heading">
+      <h1 id="heading">Find it again.</h1>
+      <p class="subtitle">Remember the idea. Find the page.</p>
+      <form id="search-form">
+        <label class="sr-only" for="query">Describe the page you remember</label>
+        <textarea id="query" rows="3" maxlength="600" placeholder="That file sharing tool without an account…" spellcheck="false"></textarea>
+        <button class="primary" type="submit">Find page <span aria-hidden="true">↵</span></button>
+      </form>
+    </section>
+    <p id="notice" class="notice" role="status" hidden></p>
+    <section class="collection" aria-label="Saved pages and search results">
+      <div class="results-heading"><h2 id="result-count">Your saved pages</h2><span id="mode">Local search</span></div>
+      <div id="results"></div>
+      <div id="empty" class="empty" hidden>
+        <div class="empty-symbol" aria-hidden="true">↗</div>
+        <h2 id="empty-title">Your next good find belongs here.</h2>
+        <p id="empty-copy">Click the extension’s toolbar icon on a page to save it. Come back with whatever you remember.</p>
+      </div>
+      <button id="more" class="secondary" hidden>More matches</button>
+      <button id="expand" class="text-button expand" hidden>Search more saved pages with Jev</button>
+    </section>
+  </main>
+  <footer><span>Saved on this device</span><span id="page-count">0 pages</span></footer>
+  <p class="save-hint">Click the toolbar icon to save a page.</p>
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>

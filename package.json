@@ -1,0 +1,9 @@
+{
+  "name": "find-that-thing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Find a saved page by describing what you remember.",
+  "scripts": { "test": "node --test tests/core.test.js" },
+  "engines": { "node": ">=20" }
+}

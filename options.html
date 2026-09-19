@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Settings · Find That Thing</title><link rel="stylesheet" href="ui.css"></head>
+<body class="settings-page">
+  <header class="app-header">
+    <a class="brand" href="sidepanel.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 21 5 28V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2v8"/><circle cx="22" cy="21" r="7"/><path d="m27 26 4 4"/></svg><span>Find That Thing</span></a>
+    <span class="muted">Settings</span>
+  </header>
+  <main>
+    <h1>Your pages. Your choice.</h1>
+    <p class="subtitle">Local search works without an account or API key.</p>
+    <p id="notice" class="notice" role="status" hidden></p>
+    <section class="settings-section" aria-labelledby="jev-heading">
+      <h2 id="jev-heading">A little help from Jev</h2>
+      <p>Optional assisted search can recognize descriptions that use different words from the page. It uses your TypeSafe API key and your API allowance.</p>
+      <form id="settings-form">
+        <label for="api-key">TypeSafe API key</label>
+        <input id="api-key" name="api-key" type="password" autocomplete="off" spellcheck="false" maxlength="500" placeholder="Paste your key">
+        <p id="key-status" class="field-help">No key saved.</p>
+        <label class="check-label"><input id="assisted" type="checkbox"><span>Use Jev to improve my searches</span></label>
+        <p class="disclosure">When enabled, your search description, candidate titles, and selected saved excerpts are sent to TypeSafe. Your whole collection and full page addresses are not sent as separate fields. Page text itself may contain private information or addresses. Only enable this for content you are comfortable sending.</p>
+        <div class="button-row"><button type="submit" class="primary compact">Save settings</button><button type="button" id="remove-key" class="text-button muted">Remove key</button></div>
+      </form>
+      <a class="external-link" href="https://console.typesafe.ai/settings/keys" target="_blank" rel="noreferrer">Get a TypeSafe key ↗</a>
+    </section>
+    <section class="settings-section" aria-labelledby="collection-heading">
+      <h2 id="collection-heading">Your collection</h2>
+      <p id="collection-size">Loading saved pages…</p>
+      <p>Pages stay in this browser profile until you forget them. Nothing is captured automatically. This version saves ordinary web page text when you click the toolbar icon.</p>
+      <div class="button-row"><button id="export" class="secondary compact">Export saved pages</button><button id="clear" class="text-button danger">Forget all pages</button></div>
+      <p class="field-help">Exports contain page addresses and saved text, but never your API key. There is no import or sync in this version.</p>
+    </section>
+    <section class="settings-section" aria-labelledby="shortcuts-heading">
+      <h2 id="shortcuts-heading">Keep it close</h2>
+      <p>Pin the extension. Click its toolbar icon to save the page you’re on and open search. A separate shortcut opens search without saving.</p>
+      <dl class="shortcut-list"><div><dt>Save page and open</dt><dd id="save-shortcut">Not assigned</dd></div><div><dt>Open search</dt><dd id="search-shortcut">Not assigned</dd></div></dl>
+      <p class="field-help">Change shortcuts in your browser’s extension shortcut settings if another extension already uses them.</p>
+    </section>
+    <section class="settings-section privacy-copy" aria-labelledby="privacy-heading">
+      <h2 id="privacy-heading">A few useful details</h2>
+      <p>Your key is held in extension storage and used by the service worker. Saved pages live in IndexedDB. This is local storage, not an encrypted vault or cloud backup.</p>
+      <p>Search queries are kept for this browser session. “This is the one” does not send feedback anywhere. Removing the extension can delete the collection.</p>
+      <p>Forgetting a page removes this extension’s copy and search data. It does not modify browser history or retract excerpts already sent to TypeSafe. Check <a href="https://typesafe.ai/" target="_blank" rel="noreferrer">TypeSafe’s current policies</a> before sending sensitive content.</p>
+    </section>
+  </main>
+  <footer><span>Find That Thing</span><span>Local prototype · v0.1.0</span></footer>
+  <dialog id="clear-dialog"><form method="dialog"><h2>Forget all saved pages?</h2><p>This removes the extension’s saved text and search data. Your browser history and Jev key stay unchanged.</p><div class="button-row"><button value="cancel" class="secondary compact" autofocus>Keep pages</button><button value="confirm" class="primary compact destructive">Forget all</button></div></form></dialog>
+  <script type="module" src="options.js"></script>
+</body>
+</html>
