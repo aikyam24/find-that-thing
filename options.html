@@ -23,10 +23,45 @@
       </form>
       <a class="external-link" href="https://console.typesafe.ai/settings/keys" target="_blank" rel="noreferrer">Get a TypeSafe key ↗</a>
     </section>
+    <section class="settings-section" aria-labelledby="history-heading">
+      <h2 id="history-heading">Browser history</h2>
+      <p>Import titles, addresses, and the most recent visit date. Find That Thing does not fetch old page bodies or change browser history.</p>
+      <p id="history-status" class="field-help">History is not connected.</p>
+      <div class="button-row"><button type="button" id="connect-history" class="secondary compact">Connect history</button></div>
+      <label class="check-label"><input id="history-enabled" type="checkbox" disabled><span>Remember future visits automatically</span></label>
+      <form id="history-import-form">
+        <label for="import-days">Import window</label>
+        <select id="import-days">
+          <option value="7">Last 7 days</option>
+          <option value="30" selected>Last 30 days</option>
+          <option value="90">Last 90 days</option>
+          <option value="custom">Custom dates</option>
+        </select>
+        <div id="custom-dates" hidden>
+          <label for="import-from">From</label>
+          <input id="import-from" type="date">
+          <label for="import-to">To</label>
+          <input id="import-to" type="date">
+        </div>
+        <label for="import-limit">Unique pages</label>
+        <select id="import-limit">
+          <option value="500">500</option>
+          <option value="2000" selected>2,000</option>
+          <option value="10000">10,000</option>
+        </select>
+        <label for="include-hosts">Only these sites (optional)</label>
+        <input id="include-hosts" type="text" placeholder="docs.example.com">
+        <label for="exclude-hosts">Exclude sites (optional)</label>
+        <input id="exclude-hosts" type="text" placeholder="mail.example.com">
+        <p id="import-disclosure" class="disclosure">Imports titles and addresses only. Automatic records expire with your retention setting. The oldest allowed date is limited to 90 days.</p>
+        <div class="button-row"><button type="submit" id="start-import" class="primary compact" disabled>Import history</button><button type="button" id="cancel-import" class="text-button muted" hidden>Cancel import</button></div>
+        <p id="import-progress" class="field-help" hidden></p>
+      </form>
+    </section>
     <section class="settings-section" aria-labelledby="collection-heading">
       <h2 id="collection-heading">Your collection</h2>
       <p id="collection-size">Loading saved pages…</p>
-      <p>Pages stay in this browser profile until you forget them. Nothing is captured automatically. This version saves ordinary web page text when you click the toolbar icon.</p>
+      <p>Pages stay in this browser profile until you forget them. Manual saves stay until you remove them. History metadata expires automatically.</p>
       <div class="button-row"><button id="export" class="secondary compact">Export saved pages</button><button id="clear" class="text-button danger">Forget all pages</button></div>
       <p class="field-help">Exports contain page addresses and saved text, but never your API key. There is no import or sync in this version.</p>
     </section>

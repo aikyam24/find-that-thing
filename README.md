@@ -2,7 +2,7 @@
 
 Save a page. Find it later by describing what you remember.
 
-Stage A browser extension: manual capture, local text search, and optional Jev-assisted ranking. No backend, build step, npm runtime dependencies, analytics, automatic capture, or history permission.
+Find That Thing is built around Jev for matching pages to what you remember. Local retrieval selects a small candidate set; Jev evaluates and ranks those candidates. This bounded workflow targets speed and efficiency, with local search available as a fallback.
 
 ## Load locally
 
@@ -25,9 +25,11 @@ Chrome 116 or newer is required. Other Chromium browsers may differ in side-pane
 
 Suggested shortcuts: `Cmd/Ctrl+Shift+S` to save and open; `Cmd/Ctrl+Shift+F` to open search without saving. Existing shortcut conflicts can prevent assignment. Settings shows the actual assigned shortcuts.
 
-## Jev (optional)
+## Set up Jev search
 
-Local search is available without a key. In Settings, add your TypeSafe key and explicitly enable assisted search. This uses your API allowance.
+Jev is the main matching engine for the intended search experience. In the current implementation, add your TypeSafe key in Settings and explicitly enable assisted search to use it. This uses your API allowance and sends the selected content described below to TypeSafe. Local-only search remains available before setup, when deliberately selected, or when Jev is unavailable.
+
+Speed, cost efficiency, and ranking quality are goals to measure; they are not yet established by a live Jev benchmark.
 
 Each assisted search sends the description and selected text passages from up to 30 saved pages to `https://api.typesafe.ai/v1/systemone`. At most three requests run concurrently under an eight-second deadline. An explicit expanded search considers at most 100 pages. Full reopening URLs are not included as fields, but saved page text can itself contain sensitive information and URLs.
 

@@ -33,10 +33,11 @@ a { color: var(--green); }
 .muted { color: var(--muted); font-weight: 400; }
 h1 { font-size: 32px; line-height: 1.13; font-weight: 700; letter-spacing: -1.35px; margin: 0 0 8px; }
 .subtitle { color: var(--muted); font-size: 15px; line-height: 1.5; margin: 0 0 23px; letter-spacing: -.2px; }
-textarea, input[type="password"] { display: block; width: 100%; border: 1px solid #b6c0b9; background: #fff; border-radius: 6px; color: var(--ink); padding: 12px; transition: border-color .15s, box-shadow .15s; }
+textarea, input[type="password"], input[type="text"], input[type="date"], input[type="number"], select { display: block; width: 100%; border: 1px solid #b6c0b9; background: #fff; border-radius: 6px; color: var(--ink); padding: 12px; transition: border-color .15s, box-shadow .15s; }
+select { margin-bottom: 12px; }
 textarea { min-height: 84px; max-height: 200px; resize: vertical; font-size: 15px; line-height: 1.45; }
 textarea::placeholder, input::placeholder { color: #88918c; }
-textarea:focus, input[type="password"]:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px #28584413; }
+textarea:focus, input[type="password"]:focus, input[type="text"]:focus, input[type="date"]:focus, input[type="number"]:focus, select:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px #28584413; }
 .primary { width: 100%; color: #fff; background: var(--green); border: 1px solid var(--green); border-radius: 5px; padding: 11px 16px; font-size: 15px; font-weight: 600; transition: background .15s; }
 .primary:hover { background: #1e4635; }
 #search-form .primary { margin-top: 11px; position: relative; }

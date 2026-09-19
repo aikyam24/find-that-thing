@@ -4,6 +4,13 @@
   "private": true,
   "type": "module",
   "description": "Find a saved page by describing what you remember.",
-  "scripts": { "test": "node --test tests/core.test.js" },
-  "engines": { "node": ">=20" }
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "fake-indexeddb": "^6.2.5"
+  }
 }

@@ -1,4 +1,4 @@
-# Verification — 19 September 2026
+# Verification
 
 ## Current boundary
 
